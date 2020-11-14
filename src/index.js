@@ -6,7 +6,7 @@ import App from "./App";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-   <center><h1>Articulos truper</h1></center>
+   <center><h1>Tarjetas Space Money</h1></center>
     <App />
   </React.StrictMode>,
   rootElement

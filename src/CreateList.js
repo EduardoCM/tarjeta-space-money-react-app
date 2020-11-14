@@ -9,7 +9,7 @@ function CreateList(props) {
         data-toggle="modal"
         data-target="#myModal"
       >
-        Crear Nuevo Articulo
+        Crear Nueva Tarjeta
       </button>
       <div
         className="modal fade"
@@ -22,7 +22,7 @@ function CreateList(props) {
           <div className="modal-content">
             <div className="modal-header">
               <span className="modal-title" id="exampleModalLabel">
-                Nuevo Articulo
+                Nueva Tarjeta
               </span>
               <button type="button" className="close" data-dismiss="modal">
                 <span>&times;</span>
@@ -31,19 +31,52 @@ function CreateList(props) {
             <div className="modal-body">
               <input
                 type="text"
-                placeholder="nombre"
-                name="nombre"
-                value={props.singledata.nombre}
+                placeholder="Nombre Titular"
+                name="nombreTitular"
+                value={props.singledata.nombreTitular}
                 onChange={props.handleChange}
               />
               <br />
               <input
                 type="text"
-                placeholder="precio"
-                name="precio"
-                value={props.singledata.precio}
+                placeholder="Banco"
+                name="nombreEntidad"
+                value={props.singledata.nombreEntidad}
                 onChange={props.handleChange}
               />
+                <br />
+              <input
+                type="text"
+                placeholder="Numero Tarjeta"
+                name="numeroTarjeta"
+                value={props.singledata.numeroTarjeta}
+                onChange={props.handleChange}
+              />
+                <br />
+              <input
+                type="text"
+                placeholder="VISA - MARTERCARD"
+                name="marca"
+                value={props.singledata.marca}
+                onChange={props.handleChange}
+              />
+                <br />
+              <input
+                type="text"
+                placeholder="Fecha Cauducidad"
+                name="fechaCauducidad"
+                value={props.singledata.fechaCauducidad}
+                onChange={props.handleChange}
+              />
+                <br />
+              <input
+                type="text"
+                placeholder="CVV"
+                name="cvv"
+                value={props.singledata.cvv}
+                onChange={props.handleChange}
+              />
+                <br />
             </div>
             <div className="modal-footer">
               <button

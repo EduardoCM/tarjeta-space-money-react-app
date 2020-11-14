@@ -9,8 +9,13 @@ class App extends React.Component {
       loading: false,
       alldata: [],
       singledata: {
-        nombre: "",
-        precio: ""
+        cvv: "",
+        fechaCauducidad: "",
+        id: "",
+        marca: "",
+        nombreEntidad: "",
+        nombreTitular: "",
+        numeroTarjeta: ""
       }
     };
     this.getLists = this.getLists.bind(this);
@@ -23,7 +28,7 @@ class App extends React.Component {
 
   getLists() {
     this.setState({ loading: true }, () => {
-      fetch("http://localhost:3000/articulos")
+      fetch("http://localhost:8089/space-money-tarjetasss/webapi/tarjetas")
         .then(res => res.json())
         .then(result =>
           this.setState({
@@ -36,21 +41,51 @@ class App extends React.Component {
   }
 
   handleChange(event) {
-    var nombre = this.state.singledata.nombre;
-    var precio = this.state.singledata.precio;
-    if (event.target.name === "nombre") nombre = event.target.value;
-    else precio = event.target.value;
+
+    console.log("ENtro a handleChange")
+     var cvv = this.state.singledata.cvv;
+     var fechaCauducidad = this.state.singledata.fechaCauducidad;
+     var id = this.state.singledata.id;
+     var marca = this.state.singledata.marca;
+     var nombreEntidad = this.state.singledata.nombreEntidad;
+     var nombreTitular = this.state.singledata.nombreTitular;
+     var numeroTarjeta = this.state.singledata.numeroTarjeta;
+
+
+   // if (event.target.name === "nombre") nombre = event.target.value;
+  //  else precio = event.target.value;
+
+  if(event.target.name === "nombreTitular"){
+    nombreTitular = event.target.value;
+  } else if (event.target.name === "nombreEntidad"){
+    nombreEntidad = event.target.value;
+  } else if (event.target.name === "numeroTarjeta"){
+    numeroTarjeta = event.target.value;
+  } else if (event.target.name === "marca"){
+    marca = event.target.value;
+  } else if (event.target.name === "fechaCauducidad"){
+    fechaCauducidad = event.target.value;
+  } else if (event.target.name === "cvv"){
+    cvv = event.target.value;
+  }
+
+
 
     this.setState({
       singledata: {
-        nombre: nombre,
-        precio: precio
+        cvv: cvv,
+        fechaCauducidad: fechaCauducidad,
+        id: id,
+        marca: marca,
+        nombreEntidad: nombreEntidad,
+        nombreTitular: nombreTitular,
+        numeroTarjeta: numeroTarjeta
       }
     });
   }
 
   createList() {
-    fetch("http://localhost:3000/articulos", {
+    fetch("http://localhost:8089/space-money-tarjetasss/webapi/tarjetas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -59,14 +94,19 @@ class App extends React.Component {
     }).then(
       this.setState({
         singledata: {
-          nombre: "",
-          precio: ""
+          cvv: "",
+        fechaCauducidad: "",
+        id: "",
+        marca: "",
+        nombreEntidad: "",
+        nombreTitular: "",
+        numeroTarjeta: ""
         }
       })
     );
   }
 
-  getList(event, id) {
+  getList(event, numeroTarjeta) {
     this.setState(
       {
         singledata: {
@@ -75,13 +115,18 @@ class App extends React.Component {
         }
       },
       () => {
-        fetch("http://localhost:3000/articulos/" + id)
+        fetch("http://localhost:8089/space-money-tarjetasss/webapi/tarjetas/" + numeroTarjeta)
           .then(res => res.json())
           .then(result => {
             this.setState({
               singledata: {
-                nombre: result.nombre,
-                precio: result.precio ? result.precio : ""
+                cvv: result.cvv,
+                fechaCauducidad: result.fechaCauducidad,
+                id: result.id,
+                marca: result.marca,
+                nombreEntidad: result.nombreEntidad,
+                nombreTitular: result.nombreTitular,
+                numeroTarjeta: result.numeroTarjeta
               }
             });
           });
@@ -89,8 +134,8 @@ class App extends React.Component {
     );
   }
 
-  updateList(event, id) {
-    fetch("http://localhost:3000/articulos/" + id, {
+  updateList(event, numeroTarjeta) {
+    fetch("http://localhost:8089/space-money-tarjetasss/webapi/tarjetas/" + numeroTarjeta, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -101,24 +146,34 @@ class App extends React.Component {
       .then(result => {
         this.setState({
           singledata: {
-            nombre: "",
-            precio: ""
+            cvv: "",
+        fechaCauducidad: "",
+        id: "",
+        marca: "",
+        nombreEntidad: "",
+        nombreTitular: "",
+        numeroTarjeta: ""
           }
         });
         this.getLists();
       });
   }
 
-  deleteList(event, id) {
-    fetch("http://localhost:3000/articulos/" + id, {
+  deleteList(event, numeroTarjeta) {
+    fetch("http://localhost:8089/space-money-tarjetasss/webapi/tarjetas/" + numeroTarjeta, {
       method: "DELETE"
     })
       .then(res => res.json())
       .then(result => {
         this.setState({
           singledata: {
-            nombre: "",
-            precio: ""
+            cvv: "",
+        fechaCauducidad: "",
+        id: "",
+        marca: "",
+        nombreEntidad: "",
+        nombreTitular: "",
+        numeroTarjeta: ""
           }
         });
         this.getLists();
@@ -146,7 +201,7 @@ class App extends React.Component {
             className="btn btn-danger"
             onClick={this.getLists}
           >
-            Obtener Articulos
+            Mostrar Tarjetas
           </button>
           <CreateList
             singledata={this.state.singledata}
