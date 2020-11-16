@@ -5,7 +5,7 @@ function CreateList(props) {
     <React.Fragment>
       <button
         type="button"
-        className="btn btn-warning"
+        className="btn btn-info"
         data-toggle="modal"
         data-target="#myModal"
       >

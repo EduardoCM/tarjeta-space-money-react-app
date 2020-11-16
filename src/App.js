@@ -198,7 +198,7 @@ class App extends React.Component {
         <span className="title-bar">
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-primary"
             onClick={this.getLists}
           >
             Mostrar Tarjetas
